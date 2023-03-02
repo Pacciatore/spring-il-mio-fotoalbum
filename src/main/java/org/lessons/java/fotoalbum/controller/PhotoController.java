@@ -72,7 +72,7 @@ public class PhotoController {
 
 		photoRepo.save(formPhoto);
 
-		return "redirect:/photos";
+		return "redirect:/photos/" + formPhoto.getId();
 	}
 
 }
