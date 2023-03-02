@@ -1,9 +1,12 @@
 package org.lessons.java.fotoalbum.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -17,6 +20,19 @@ public class Tag {
 
 	@NotNull
 	private String name;
+
+	@JsonBackReference
+	@NotNull
+	@ManyToOne
+	private Photo photo;
+
+	public Photo getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(Photo photo) {
+		this.photo = photo;
+	}
 
 	public long getId() {
 		return id;

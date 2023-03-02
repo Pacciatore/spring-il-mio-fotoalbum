@@ -30,14 +30,22 @@ public class Photo {
 	@NotNull
 	private boolean visible;
 
-//	 TODO: Modelli per Tag  + Relazioni
-//	 private List<Tag> tags;
+	@OneToMany(mappedBy = "photo", cascade = CascadeType.REMOVE)
+	private List<Tag> tags;
 
 	@OneToMany(mappedBy = "photo", cascade = CascadeType.REMOVE)
 	private List<Comment> comments;
 
 	@ManyToMany()
 	private List<Category> categories;
+
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
 
 	public List<Comment> getComments() {
 		return comments;
