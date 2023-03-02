@@ -5,6 +5,9 @@
 
     <th:block th:replace="~{fragments/head :: personal-head('All Photos')}" />
 
+    <!-- Link CSS -->
+    <link rel="stylesheet" th:href="@{/css/photo-index.css}" />
+
 </head>
 
 <body class="bg-dark text-white">
@@ -18,12 +21,14 @@
     <main>
         <div class="container">
 
-            <div class="d-flex flex-wrap gap-2">
+            <div class="d-flex flex-wrap gap-5 justify-content-center">
 
-                <div th:each="photo : ${photos}" class="card">
+                <div th:each="photo : ${photos}" class="card position-relative">
 
                     <!-- Immagine della foto -->
                     <img class="card-img" th:src="${photo.url}" th:alt="|foto_${photo.id}|">
+
+                    <a th:href="|@{photos/}${photo.id}|" class="stretched-link"></a>
 
                     <!-- Contenuto della card -->
                     <div class="card-img-overlay">

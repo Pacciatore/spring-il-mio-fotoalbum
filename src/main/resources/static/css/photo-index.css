@@ -1,0 +1,8 @@
+.card-img-overlay {
+    background-color: #00000000;
+    transition: all .25s;
+}
+
+.stretched-link:hover+.card-img-overlay {
+    background-color: #000000aa;
+}
