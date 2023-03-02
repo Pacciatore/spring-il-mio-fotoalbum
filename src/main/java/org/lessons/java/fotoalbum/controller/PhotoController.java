@@ -75,4 +75,31 @@ public class PhotoController {
 		return "redirect:/photos/" + formPhoto.getId();
 	}
 
+	@GetMapping("/create")
+	public String create(Model model) {
+		Photo photo = new Photo();
+
+		List<Category> categories = categoryRepo.findAllByOrderByName();
+
+		model.addAttribute("photo", photo);
+		model.addAttribute("categoriesList", categories);
+
+		return "photos/create";
+	}
+
+	@PostMapping("/create")
+	public String store(
+//			@Valid 
+			@ModelAttribute("photo") Photo formPhoto, BindingResult bindingResult, Model model) {
+
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("cattegoriesList", categoryRepo.findAllByOrderByName());
+			return "photos/create";
+		}
+
+		photoRepo.save(formPhoto);
+
+		return "redirect:/photos";
+	}
+
 }

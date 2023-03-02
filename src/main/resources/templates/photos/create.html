@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+
+    <th:block th:replace="~{fragments/head :: personal-head('Aggiungi una foto')}" />
+
+    <!-- Link CSS da cambiare o eliminare -->
+    <link rel="stylesheet" th:href="@{/css/photo-index.css}" />
+
+</head>
+
+<body class="bg-dark text-white">
+
+    <!-- Titolo pagina -->
+    <header class="py-3">
+        <h1 class="text-center">Aggiungi una foto</h1>
+    </header>
+
+    <form class="container d-flex flex-column align-items-center gap-2 py-3" id="photoForm" th:object="${photo}"
+        th:action="@{/photos/create}" method="post">
+
+        <!-- Titolo foto -->
+        <div class="col-4">
+            <label class="form-label" for="photoTitle">Titolo foto</label>
+            <input class="form-control" type="text" th:field="*{title}" id="photoTitle">
+        </div>
+
+        <!-- Url foto -->
+        <div class="col-4">
+            <label class="form-label" for="photoUrl">Link alla foto</label>
+            <input class="form-control" type="text" th:field="*{url}" id="photoUrl">
+        </div>
+
+        <!-- Descrizione foto -->
+        <div class="col-4">
+            <label class="form-label" for="photoDescription">Descrizione</label>
+            <textarea class="form-control" th:field="*{description}" id="photoDescription" rows="5"
+                placeholder="(Opzionale)"></textarea>
+        </div>
+
+        <!-- Checkbox delle Categories -->
+        <div th:unless="${categoriesList.isEmpty()}" class="col-4">
+
+            <h3 class="form-label">Categorie</h3>
+            <div class="d-flex flex-column">
+                <div th:each="category : ${categoriesList}" class="col-4">
+                    <input class="form-check-input" type="checkbox" th:value="${category.id}" th:field="*{categories}"
+                        th:id="|category_${category.id}|">
+                    <label class="form-check-label" th:text="${category.name}"
+                        th:for="|category_${category.id}|"></label>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Button navigation -->
+        <div class="col-12 d-flex gap-2 py-3">
+
+            <a th:href="@{/photos}" class="btn btn-primary">Torna all'elenco</a>
+
+            <input class="btn btn-success ms-auto" type="submit" value="Aggiungi foto">
+
+        </div>
+
+    </form>
+
+</body>
+
+</html>
