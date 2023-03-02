@@ -1,9 +1,12 @@
 package org.lessons.java.fotoalbum.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -25,10 +28,19 @@ public class Photo {
 	@NotNull
 	private boolean visible;
 
-//	 TODO: Modelli per Tag e Categories + Relazioni
+//	 TODO: Modelli per Tag  + Relazioni
 //	 private List<Tag> tags;
-//	 
-//	 private List<Category> categories;
+
+	@ManyToMany()
+	private List<Category> categories;
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
 
 	public long getId() {
 		return id;
