@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -23,6 +24,14 @@ public class PhotoController {
 		model.addAttribute("photos", photos);
 
 		return "photos/index";
+	}
+
+	@GetMapping("{id}")
+	public String show(@PathVariable(name = "id") long id, Model model) {
+		Photo photo = photosRepo.getReferenceById(id);
+		model.addAttribute("photo", photo);
+
+		return "photos/show";
 	}
 
 }
