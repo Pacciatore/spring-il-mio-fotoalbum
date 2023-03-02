@@ -20,6 +20,7 @@ public class Photo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@NotNull
 	private String title;
 
 	private String description;
