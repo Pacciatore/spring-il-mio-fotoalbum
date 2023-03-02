@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+
+    <th:block th:replace="~{fragments/head :: personal-head(${photo.title})}" />
+
+    <!-- Link CSS da cambiare o eliminare -->
+    <link rel="stylesheet" th:href="@{/css/photo-index.css}" />
+
+</head>
+
+<body class="bg-dark text-white">
+
+    <!-- Titolo pagina -->
+    <header class="py-3">
+        <h1 class="text-center">[[${photo.title}]]</h1>
+    </header>
+
+    <!-- Contenuto principale della pagina -->
+    <main>
+        <div class="container">
+
+            <div class="d-flex flex-column flex-wrap">
+
+                <img class="img-thumbnail m-auto" th:src="${photo.url}" th:alt="|foto_${photo.id}|">
+
+                <!-- Descrizione della foto -->
+                <p th:unless="${photo.description.isEmpty()}">[[${photo.description}]]</p>
+
+                <!-- Se tag non è vuoto -->
+                <ul th:unless="${photo.tags.isEmpty()}">
+                    <li th:each="tag : ${photo.tags}">[[${tag.name}]]</li>
+                </ul>
+
+                <!-- Se categorie non è vuoto -->
+                <ul th:unless="${photo.categories.isEmpty()}">
+                    <li th:each="category : ${photo.categories}">[[${category.name}]]</li>
+                </ul>
+
+                <!-- Se commenti non è vuoto -->
+                <ul th:unless="${photo.comments.isEmpty()}">
+                    <li th:each="comment : ${photo.comments}">Nome utente: [[${comment.content}]]</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        </div>
+    </main>
+
+    <!-- Footer per Button Navigation -->
+    <footer class="container d-flex justify-content-end">
+
+        <div class="d-flex flex-row-reverse gap-2">
+            <a th:href="@{/photos}" class="btn btn-primary">Torna all'elenco</a>
+
+            <a th:href="@{/photos/edit/{id}(id=${photo.id})}" class="btn btn-success">Modifica foto</a>
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
