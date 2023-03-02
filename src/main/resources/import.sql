@@ -8,3 +8,14 @@ INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Un
 INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Titolo', 'https://picsum.photos/200', true);
 INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Titolo', 'https://picsum.photos/200', true);
 INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Titolo', 'https://picsum.photos/200', true);
+
+INSERT INTO spring_fotoalbum.categories(name) VALUES('Mare');
+INSERT INTO spring_fotoalbum.categories(name) VALUES('Montagna');
+INSERT INTO spring_fotoalbum.categories(name) VALUES('Panorama');
+INSERT INTO spring_fotoalbum.categories(name) VALUES('Selfie');
+INSERT INTO spring_fotoalbum.categories(name) VALUES('Vacanza');
+INSERT INTO spring_fotoalbum.categories(name) VALUES('Campagna');
+INSERT INTO spring_fotoalbum.categories(name) VALUES('Lavoro');
+INSERT INTO spring_fotoalbum.categories(name) VALUES('Sport');
+INSERT INTO spring_fotoalbum.categories(name) VALUES('Cucina');
+INSERT INTO spring_fotoalbum.categories(name) VALUES('Informatica');
