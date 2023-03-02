@@ -1,0 +1,14 @@
+<th:block th:fragment="personal-head(title)">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link Thymeleaf per Bootstrap -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}" />
+
+    <!-- Link Fontawesome -->
+    <script src="https://kit.fontawesome.com/d86471a21d.js" crossorigin="anonymous"></script>
+
+    <title>[[${title}]]</title>
+
+</th:block>
