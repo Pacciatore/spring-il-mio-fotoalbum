@@ -39,16 +39,16 @@
                         <p th:unless="${photo.description.isEmpty()}">[[${photo.description}]]</p>
 
                         <!-- Se commenti non è vuoto -->
-                        <p th:unless="${photo.comments.isEmpty()}">Numero commenti</p>
+                        <p>Commenti: [[${photo.comments.size()}]]</p>
 
                         <!-- Se tag non è vuoto -->
                         <ul th:unless="${photo.tags.isEmpty()}">
-                            <li th:each="tag : photo.tags">[[${tag.name}]]</li>
+                            <li th:each="tag : ${photo.tags}">[[${tag.name}]]</li>
                         </ul>
 
                         <!-- Se categorie non è vuoto -->
                         <ul th:unless="${photo.categories.isEmpty()}">
-                            <li th:each="category : photo.categories">[[${category.name}]]</li>
+                            <li th:each="category : ${photo.categories}">[[${category.name}]]</li>
                         </ul>
 
                     </div>
