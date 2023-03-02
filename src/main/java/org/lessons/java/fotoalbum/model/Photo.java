@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "photos")
@@ -17,6 +18,17 @@ public class Photo {
 	private String title;
 
 	private String description;
+
+	@NotNull
+	private String url;
+
+	@NotNull
+	private boolean visible;
+
+//	 TODO: Modelli per Tag e Categories + Relazioni
+//	 private List<Tag> tags;
+//	 
+//	 private List<Category> categories;
 
 	public long getId() {
 		return id;
@@ -57,14 +69,5 @@ public class Photo {
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
-
-	private String url;
-
-	private boolean visible;
-
-//	 TODO: Modelli per Tag e Categories + Relazioni
-//	 private List<Tag> tags;
-//	 
-//	 private List<Category> categories;
 
 }
