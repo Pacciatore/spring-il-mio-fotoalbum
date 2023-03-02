@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://thymeleaf.org">
 
 <head>
 
@@ -7,9 +7,58 @@
 
 </head>
 
-<body>
+<body class="bg-dark text-white">
 
+    <!-- Titolo pagina -->
+    <header class="py-3">
+        <h1 class="text-center">Elenco foto</h1>
+    </header>
 
+    <!-- Contenuto principale della pagina -->
+    <main>
+        <div class="container">
+
+            <div class="d-flex flex-wrap gap-2">
+
+                <div th:each="photo : ${photos}" class="card">
+
+                    <!-- Immagine della foto -->
+                    <img class="card-img" th:src="${photo.url}" th:alt="|foto_${photo.id}|">
+
+                    <!-- Contenuto della card -->
+                    <div class="card-img-overlay">
+                        <!-- Titolo della foto -->
+                        <h5 class="card-title">[[${photo.title}]]</h5>
+
+                        <!-- Descrizione della foto -->
+                        <p th:unless="${photo.description.isEmpty()}">[[${photo.description}]]</p>
+
+                        <!-- Se commenti non è vuoto -->
+                        <p th:unless="${photo.comments.isEmpty()}">Numero commenti</p>
+
+                        <!-- Se tag non è vuoto -->
+                        <ul th:unless="${photo.tags.isEmpty()}">
+                            <li th:each="tag : photo.tags">[[${tag.name}]]</li>
+                        </ul>
+
+                        <!-- Se categorie non è vuoto -->
+                        <ul th:unless="${photo.categories.isEmpty()}">
+                            <li th:each="category : photo.categories">[[${category.name}]]</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer per Button Navigation -->
+    <footer>
+
+    </footer>
 
 </body>
 
