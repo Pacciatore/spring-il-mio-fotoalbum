@@ -3,7 +3,9 @@ package org.lessons.java.fotoalbum.api;
 import java.util.List;
 import java.util.Optional;
 
+import org.lessons.java.fotoalbum.model.Comment;
 import org.lessons.java.fotoalbum.model.Photo;
+import org.lessons.java.fotoalbum.repository.CommentRepository;
 import org.lessons.java.fotoalbum.repository.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,9 @@ public class PhotoApiController {
 
 	@Autowired
 	private PhotoRepository photoRepo;
+
+	@Autowired
+	private CommentRepository commentRepo;
 
 	@GetMapping
 	public List<Photo> index(@RequestParam(name = "photo", required = false) String keyword) {
@@ -65,5 +70,13 @@ public class PhotoApiController {
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable(name = "id") long id) {
 		photoRepo.deleteById(id);
+	}
+
+//	Inner controller for Comments
+	@GetMapping("{id}/comments")
+	public List<Comment> showComments(@PathVariable(name = "id") long id) {
+		List<Comment> comments = photoRepo.getReferenceById(id).getComments();
+
+		return comments;
 	}
 }
