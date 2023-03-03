@@ -23,32 +23,60 @@
         <!-- Titolo foto -->
         <div class="col-4">
             <label class="form-label" for="photoTitle">Titolo foto</label>
-            <input class="form-control" type="text" th:field="*{title}" id="photoTitle">
+            <input class="form-control" type="text" th:field="*{title}" id="photoTitle" th:errorClass="is-invalid">
+            <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
+                <p th:each="err : ${#fields.errors('title')}" th:text="${err}"></p>
+            </div>
         </div>
 
         <!-- Url foto -->
         <div class="col-4">
             <label class="form-label" for="photoUrl">Link alla foto</label>
-            <input class="form-control" type="text" th:field="*{url}" id="photoUrl">
+            <input class="form-control" type="text" th:field="*{url}" id="photoUrl" th:errorClass="is-invalid">
+            <div th:if="${#fields.hasErrors('url')}" class="invalid-feedback">
+                <p th:each="err : ${#fields.errors('url')}" th:text="${err}"></p>
+            </div>
         </div>
 
         <!-- Descrizione foto -->
         <div class="col-4">
             <label class="form-label" for="photoDescription">Descrizione</label>
             <textarea class="form-control" th:field="*{description}" id="photoDescription" rows="5"
-                placeholder="(Opzionale)"></textarea>
+                placeholder="(Opzionale)" th:errorClass="is-invalid"></textarea>
+            <div th:if="${#fields.hasErrors('description')}" class="invalid-feedback">
+                <p th:each="err : ${#fields.errors('description')}" th:text="${err}"></p>
+            </div>
         </div>
 
-        <!-- Checkbox delle Categories -->
-        <div th:unless="${categoriesList.isEmpty()}" class="col-4">
+        <!-- Checkbox delle Categories e Radio Visible -->
+        <div class="col-4 d-flex">
 
-            <h3 class="form-label">Categorie</h3>
-            <div class="d-flex flex-column">
-                <div th:each="category : ${categoriesList}" class="col-4">
-                    <input class="form-check-input" type="checkbox" th:value="${category.id}" th:field="*{categories}"
-                        th:id="|category_${category.id}|">
-                    <label class="form-check-label" th:text="${category.name}"
-                        th:for="|category_${category.id}|"></label>
+            <!-- Checkbox delle Categories -->
+            <div th:unless="${categoriesList.isEmpty()}" class="col-6">
+                <h3 class="form-label">Categorie</h3>
+                <div class="d-flex flex-column">
+                    <div th:each="category : ${categoriesList}" class="col">
+                        <input class="form-check-input" type="checkbox" th:value="${category.id}"
+                            th:field="*{categories}" th:id="|category_${category.id}|">
+                        <label class="form-check-label" th:text="${category.name}"
+                            th:for="|category_${category.id}|"></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Radio per visibilità -->
+            <div class="col-6">
+                <h3>Visibilità foto</h3>
+
+                <!-- Radio se visibile, default -->
+                <div class="form-check">
+                    <input class="forma-check-input" type="radio" th:field="*{visible}" value="1" id="photoVisible">
+                    <label class="form-check-label" for="photoVisible">Visibile</label>
+                </div>
+                <!-- Radio se non visibile -->
+                <div class="form-check">
+                    <input class="forma-check-input" type="radio" th:field="*{visible}" value="0" id="photoNotVisible">
+                    <label class="form-check-label" for="photoNotVisible">Non visibile</label>
                 </div>
             </div>
 

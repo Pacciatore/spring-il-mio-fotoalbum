@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.validation.Valid;
+
 @Controller
 @RequestMapping("/photos")
 public class PhotoController {
@@ -60,15 +62,13 @@ public class PhotoController {
 	}
 
 	@PostMapping("/edit/{id}")
-	public String update(
-//			@Valid 
-			@ModelAttribute("photo") Photo formPhoto, BindingResult bindingResult, Model model) {
+	public String update(@Valid @ModelAttribute("photo") Photo formPhoto, BindingResult bindingResult, Model model) {
 
-//		if (bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 //			model.addAttribute("tagsList", tagRepo.findAllByOrderByName());
-//			model.addAttribute("categoriesList", categoryRepo.findAllByOrderByName());
-//			return "photos/edit";
-//		}
+			model.addAttribute("categoriesList", categoryRepo.findAllByOrderByName());
+			return "photos/edit";
+		}
 
 		photoRepo.save(formPhoto);
 
@@ -88,12 +88,10 @@ public class PhotoController {
 	}
 
 	@PostMapping("/create")
-	public String store(
-//			@Valid 
-			@ModelAttribute("photo") Photo formPhoto, BindingResult bindingResult, Model model) {
+	public String store(@Valid @ModelAttribute("photo") Photo formPhoto, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("cattegoriesList", categoryRepo.findAllByOrderByName());
+			model.addAttribute("categoriesList", categoryRepo.findAllByOrderByName());
 			return "photos/create";
 		}
 
