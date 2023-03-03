@@ -36,10 +36,11 @@
                         <h5 class="card-title">[[${photo.title}]]</h5>
 
                         <!-- Descrizione della foto -->
-                        <p th:unless="${photo.description.isEmpty()}">[[${photo.description}]]</p>
+                        <p class="card-text text-truncate" th:unless="${photo.description.isEmpty()}">
+                            [[${photo.description}]]</p>
 
                         <!-- Se commenti non è vuoto -->
-                        <p>Commenti: [[${photo.comments.size()}]]</p>
+                        <p class="text-secondary m-0">Commenti: [[${photo.comments.size()}]]</p>
 
                         <!-- Se tag non è vuoto -->
                         <ul th:unless="${photo.tags.isEmpty()}">
@@ -47,7 +48,8 @@
                         </ul>
 
                         <!-- Se categorie non è vuoto -->
-                        <ul th:unless="${photo.categories.isEmpty()}">
+                        <ul class="list-unstyled d-flex flex-wrap gap-1 text-info"
+                            th:unless="${photo.categories.isEmpty()}">
                             <li th:each="category : ${photo.categories}">[[${category.name}]]</li>
                         </ul>
 
