@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -23,7 +24,8 @@ public class Tag {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@NotNull
+	@NotNull(message = "Il nome è obbligatorio!")
+	@Length(min = 3, message = "Il nome del tag deve essere di almeno 3 caratteri!")
 	private String name;
 
 	@JsonBackReference

@@ -105,9 +105,6 @@
                             <!-- Nome categoria -->
                             <input class="form-control" type="text" th:field="*{name}" id="tagName"
                                 th:errorClass="is-invalid">
-                            <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
-                                <p th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
-                            </div>
                         </form>
 
                         <div class="modal-footer">

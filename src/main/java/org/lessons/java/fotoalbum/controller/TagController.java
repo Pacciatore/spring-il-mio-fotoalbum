@@ -7,9 +7,14 @@ import org.lessons.java.fotoalbum.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/tags")
@@ -32,6 +37,25 @@ public class TagController {
 		model.addAttribute("tag", tag);
 
 		return "tags/show";
+	}
+
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable("id") long id, Model model) {
+		model.addAttribute("tag", tagRepo.getReferenceById(id));
+
+		return "tags/edit";
+	}
+
+	@PostMapping("/edit/{id}")
+	public String update(@Valid @ModelAttribute("tag") Tag formTag, BindingResult bindingResult, Model model) {
+
+		if (bindingResult.hasErrors()) {
+			return "tags/edit";
+		}
+
+		tagRepo.save(formTag);
+
+		return "redirect:/tags/" + formTag.getId();
 	}
 
 }
