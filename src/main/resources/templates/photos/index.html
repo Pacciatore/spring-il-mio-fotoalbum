@@ -32,7 +32,8 @@
 
             <div class="d-flex flex-wrap gap-5 justify-content-center">
 
-                <div th:each="photo : ${photos}" class="card position-relative">
+                <div th:each="photo : ${photos}" class="card position-relative"
+                    style="min-height: 200px; min-width: 200px">
 
                     <!-- Immagine della foto -->
                     <img class="card-img" th:src="${photo.url}" th:alt="|foto_${photo.id}|">

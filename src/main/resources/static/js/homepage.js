@@ -28,12 +28,12 @@ function photosList() {
                 const categories = photo.categories;
 
                 document.getElementById('photosContainer').innerHTML += `
-                    <div class="card position-relative">
+                    <div class="card position-relative" style="min-height: 200px; min-width: 200px">
 
                         <!-- Immagine della foto -->
                         <img class="card-img" src="${photo.url}" alt="foto_${photo.id}">
 
-                        <a href="photo/${photo.id}" class="stretched-link"></a>
+                        <a href="./photo?id=${photo.id}" class="stretched-link"></a>
 
                         <!-- Contenuto della card -->
                         <div class="card-img-overlay">
