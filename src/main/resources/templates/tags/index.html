@@ -24,17 +24,7 @@
             </h3>
 
             <!-- Se ci sono Tag -->
-            <div class="list-group">
-
-                <a th:href="@{/tags/{id}(id=${tag.id})}"
-                    class="list-group-item list-group-item-action d-flex justify-content-between"
-                    th:each="tag : ${tags}">
-                    <span class="text-primary">[[${tag.name}]]</span>
-                    <span
-                        th:class="${tag.photos.size() == 0 ? 'text-danger pe-4' : 'text-success pe-4'}">[[${tag.photos.size()}]]</span>
-                </a>
-
-            </div>
+            <div th:unless="${tags.isEmpty()}" th:replace="~{fragments/list :: list-group(${tags}, 'tags')}"></div>
 
         </div>
     </main>

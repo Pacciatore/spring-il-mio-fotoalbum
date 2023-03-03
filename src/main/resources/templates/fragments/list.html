@@ -1,0 +1,13 @@
+<th:block th:fragment="list-group(elementList, elementRoute)">
+    <div class="list-group">
+
+        <a th:href="@{|${elementRoute}/${element.id}|}"
+            class="list-group-item list-group-item-action d-flex justify-content-between"
+            th:each="element : ${elementList}">
+            <span class="text-primary">[[${element.name}]]</span>
+            <span
+                th:class="${element.photos.size() == 0 ? 'text-danger pe-4' : 'text-success pe-4'}">[[${element.photos.size()}]]</span>
+        </a>
+
+    </div>
+</th:block>
