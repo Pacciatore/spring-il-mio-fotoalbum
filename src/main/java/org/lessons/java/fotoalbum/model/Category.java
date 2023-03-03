@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -24,6 +25,7 @@ public class Category {
 	private long id;
 
 	@NotNull
+	@Length(min = 3, message = "Il nome della categoria deve essere di almeno 3 caratteri!")
 	private String name;
 
 	@JsonBackReference
