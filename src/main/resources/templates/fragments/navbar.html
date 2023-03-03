@@ -8,13 +8,16 @@
 
             <ul class="navbar-nav d-flex flex-row gap-2">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/photos}">Foto</a>
+                    <a th:class="${activePage.contains('photos')} ? 'nav-link active' : 'nav-link'" aria-current="page"
+                        th:href="@{/photos}">Foto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/tags}">Tags</a>
+                    <a th:class="${activePage.contains('tags')} ? 'nav-link active' : 'nav-link'"
+                        th:href="@{/tags}">Tags</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/categories}">Categorie</a>
+                    <a th:class="${activePage.contains('categories')} ? 'nav-link active' : 'nav-link'"
+                        th:href="@{/categories}">Categorie</a>
                 </li>
             </ul>
 
