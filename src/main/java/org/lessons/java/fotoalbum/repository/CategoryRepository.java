@@ -9,4 +9,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
 	public List<Category> findAllByOrderByName();
 
+	public List<Category> findByNameLike(String name);
+
 }
