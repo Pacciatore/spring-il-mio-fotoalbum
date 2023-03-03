@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.lessons.java.fotoalbum.model.Category;
 import org.lessons.java.fotoalbum.model.Photo;
+import org.lessons.java.fotoalbum.model.Tag;
 import org.lessons.java.fotoalbum.repository.CategoryRepository;
 import org.lessons.java.fotoalbum.repository.PhotoRepository;
 import org.lessons.java.fotoalbum.repository.TagRepository;
@@ -51,11 +52,11 @@ public class PhotoController {
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") long id, Model model) {
 		Photo photo = photoRepo.getReferenceById(id);
-//		List<Tag> tagsList = tagRepo.findAllByOrderByName();
+		List<Tag> tagsList = tagRepo.findAllByOrderByName();
 		List<Category> categoriesList = categoryRepo.findAllByOrderByName();
 
 		model.addAttribute("photo", photo);
-//		model.addAttribute("tagsList", tagsList);
+		model.addAttribute("tagsList", tagsList);
 		model.addAttribute("categoriesList", categoriesList);
 
 		return "photos/edit";
@@ -65,7 +66,7 @@ public class PhotoController {
 	public String update(@Valid @ModelAttribute("photo") Photo formPhoto, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
-//			model.addAttribute("tagsList", tagRepo.findAllByOrderByName());
+			model.addAttribute("tagsList", tagRepo.findAllByOrderByName());
 			model.addAttribute("categoriesList", categoryRepo.findAllByOrderByName());
 			return "photos/edit";
 		}
@@ -80,9 +81,11 @@ public class PhotoController {
 		Photo photo = new Photo();
 
 		List<Category> categories = categoryRepo.findAllByOrderByName();
+		List<Tag> tags = tagRepo.findAllByOrderByName();
 
 		model.addAttribute("photo", photo);
 		model.addAttribute("categoriesList", categories);
+		model.addAttribute("tagsList", tags);
 
 		return "photos/create";
 	}
@@ -91,6 +94,7 @@ public class PhotoController {
 	public String store(@Valid @ModelAttribute("photo") Photo formPhoto, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("tagsList", tagRepo.findAllByOrderByName());
 			model.addAttribute("categoriesList", categoryRepo.findAllByOrderByName());
 			return "photos/create";
 		}

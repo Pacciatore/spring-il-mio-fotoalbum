@@ -48,7 +48,7 @@
             </div>
         </div>
 
-        <!-- Checkbox delle Categories e Radio Visible -->
+        <!-- Checkbox delle Categories e Tags e Radio Visibility -->
         <div class="col-4 d-flex">
 
             <!-- Checkbox delle Categories -->
@@ -64,19 +64,35 @@
                 </div>
             </div>
 
-            <!-- Radio per visibilità -->
-            <div class="col-6">
-                <h3>Visibilità foto</h3>
+            <!-- Visibility e Tags -->
+            <div class="col-6 d-flex flex-column">
+                <!-- Radio per visibilità -->
+                <div class="col">
+                    <h3>Visibilità foto</h3>
 
-                <!-- Radio se visibile, default -->
-                <div class="form-check">
-                    <input class="forma-check-input" type="radio" th:field="*{visible}" value="1" id="photoVisible">
-                    <label class="form-check-label" for="photoVisible">Visibile</label>
+                    <!-- Radio se visibile, default -->
+                    <div>
+                        <input class="forma-check-input" type="radio" th:field="*{visible}" value="1" id="photoVisible">
+                        <label class="form-check-label" for="photoVisible">Visibile</label>
+                    </div>
+                    <!-- Radio se non visibile -->
+                    <div>
+                        <input class="forma-check-input" type="radio" th:field="*{visible}" value="0"
+                            id="photoNotVisible">
+                        <label class="form-check-label" for="photoNotVisible">Non visibile</label>
+                    </div>
                 </div>
-                <!-- Radio se non visibile -->
-                <div class="form-check">
-                    <input class="forma-check-input" type="radio" th:field="*{visible}" value="0" id="photoNotVisible">
-                    <label class="form-check-label" for="photoNotVisible">Non visibile</label>
+
+                <!-- Checkbox dei Tag -->
+                <div class="col">
+                    <div th:unless="${tagsList.isEmpty()}" class="col">
+                        <h3 class="form-label">Tag</h3>
+                        <div th:each="tag : ${tagsList}">
+                            <input class="form-check-input" type="checkbox" th:value="${tag.id}" th:field="*{tags}"
+                                th:id="|tag_${tag.id}|">
+                            <label class="form-check-label" th:text="${tag.name}" th:for="|tag_${tag.id}|"></label>
+                        </div>
+                    </div>
                 </div>
             </div>
 
