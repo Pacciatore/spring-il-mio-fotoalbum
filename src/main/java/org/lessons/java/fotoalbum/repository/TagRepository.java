@@ -9,4 +9,6 @@ public interface TagRepository extends JpaRepository<Tag, Long> {
 
 	public List<Tag> findAllByOrderByName();
 
+	public List<Tag> findByNameLike(String name);
+
 }
