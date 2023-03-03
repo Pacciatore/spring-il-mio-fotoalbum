@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+
+    <th:block th:replace="~{fragments/head :: personal-head('FotoLibro')}" />
+
+    <!-- Link Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Link a js/homepage.js -->
+    <script type="text/javascript" th:src="@{/js/homepage.js}" defer></script>
+
+</head>
+
+<body class="bg-dark text-white">
+
+    <!-- Navbar -->
+    <nav th:replace="~{fragments/navbar :: front-navbar('photos')}"></nav>
+
+    <!-- Titolo pagina -->
+    <header class="py-3">
+        <h1 class="text-center">Elenco foto</h1>
+    </header>
+
+    <!-- Contenuto principale della pagina -->
+    <main>
+        <div class="container">
+
+            <!-- Barra di ricerca per titolo -->
+            <form action="" method="get" class="py-3">
+                <input class="form-control col-4" type="text" name="photo" id="photoQuery"
+                    placeholder="Inserire titolo della foto da ricercare...">
+            </form>
+
+            <div class="d-flex flex-wrap gap-5 justify-content-center">
+
+                <div th:each="photo : ${photos}" class="card position-relative">
+
+                    <!-- Immagine della foto -->
+                    <img class="card-img" th:src="${photo.url}" th:alt="|foto_${photo.id}|">
+
+                    <a th:href="|@{photos/}${photo.id}|" class="stretched-link"></a>
+
+                    <!-- Contenuto della card -->
+                    <div class="card-img-overlay">
+                        <!-- Titolo della foto -->
+                        <h5 class="card-title">[[${photo.title}]]</h5>
+
+                        <!-- Descrizione della foto -->
+                        <p class="card-text text-truncate" th:unless="${photo.description.isEmpty()}">
+                            [[${photo.description}]]</p>
+
+                        <!-- Se commenti non è vuoto -->
+                        <p class="text-secondary m-0">Commenti: [[${photo.comments.size()}]]</p>
+
+                        <!-- Se tag non è vuoto -->
+                        <ul class="list-unstyled d-flex flex-wrap gap-1 text-warning mb-0"
+                            th:unless="${photo.tags.isEmpty()}">
+                            <li th:each="tag : ${photo.tags}">[[${tag.name}]]</li>
+                        </ul>
+
+                        <!-- Se categorie non è vuoto -->
+                        <ul class="list-unstyled d-flex flex-wrap gap-1 text-info mb-0"
+                            th:unless="${photo.categories.isEmpty()}">
+                            <li th:each="category : ${photo.categories}">[[${category.name}]]</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>
