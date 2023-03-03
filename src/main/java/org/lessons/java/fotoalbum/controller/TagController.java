@@ -77,4 +77,10 @@ public class TagController {
 		return "redirect:/tags";
 	}
 
+	@PostMapping("/delete/{id}")
+	public String delete(@PathVariable("id") long id) {
+		tagRepo.deleteById(id);
+
+		return "redirect:/tags";
+	}
 }
