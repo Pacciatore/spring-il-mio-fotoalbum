@@ -2,6 +2,9 @@ package org.lessons.java.fotoalbum.model;
 
 import java.util.List;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -21,11 +25,16 @@ public class Photo {
 	private long id;
 
 	@NotNull
+	@NotEmpty(message = "Il titolo è obbligatorio!")
+	@Length(min = 3, message = "Il titolo deve essere di almeno 3 caratteri!")
 	private String title;
 
+	@Length(max = 200, message = "La descrizione deve essere massimo di 200 caratteri!")
 	private String description;
 
 	@NotNull
+	@NotEmpty(message = "Il link dell'immagine è obbligatorio!")
+	@URL(message = "Il campo deve essere un URL!")
 	private String url;
 
 	@NotNull
