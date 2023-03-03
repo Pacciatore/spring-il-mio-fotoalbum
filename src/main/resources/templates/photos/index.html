@@ -43,12 +43,13 @@
                         <p class="text-secondary m-0">Commenti: [[${photo.comments.size()}]]</p>
 
                         <!-- Se tag non è vuoto -->
-                        <ul th:unless="${photo.tags.isEmpty()}">
+                        <ul class="list-unstyled d-flex flex-wrap gap-1 text-warning mb-0"
+                            th:unless="${photo.tags.isEmpty()}">
                             <li th:each="tag : ${photo.tags}">[[${tag.name}]]</li>
                         </ul>
 
                         <!-- Se categorie non è vuoto -->
-                        <ul class="list-unstyled d-flex flex-wrap gap-1 text-info"
+                        <ul class="list-unstyled d-flex flex-wrap gap-1 text-info mb-0"
                             th:unless="${photo.categories.isEmpty()}">
                             <li th:each="category : ${photo.categories}">[[${category.name}]]</li>
                         </ul>
