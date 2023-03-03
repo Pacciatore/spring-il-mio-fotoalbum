@@ -50,12 +50,12 @@
     <footer class="container d-flex justify-content-between gap-2 py-3">
 
         <!-- Button trigger modal for Delete -->
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
             Elimina
         </button>
 
         <!-- Modal per il Delete -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content text-black">
                     <div class="modal-header">
@@ -85,7 +85,43 @@
         <div class="d-flex flex-row-reverse gap-2">
             <a th:href="@{/categories}" class="btn btn-primary">Torna all'elenco</a>
 
-            <a th:href="@{/photos/edit/{id}(id=${category.id})}" class="btn btn-success">Modifica nome categoria</a>
+            <!-- Button trigger modal for Edit -->
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal">
+                Modifica nome
+            </button>
+
+            <!-- Modal per l'Edit -->
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content text-black">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="editModalLabel">
+                                Nome:
+                            </h1>
+                        </div>
+
+                        <!-- Form in modal per Edit -->
+                        <form class="modal-body" id="categoryForm" th:object="${category}"
+                            th:action="@{/categories/edit/{id}(id=${category.id})}" method="post">
+                            <!-- Nome categoria -->
+                            <input class="form-control" type="text" th:field="*{name}" id="categoryName"
+                                th:errorClass="is-invalid">
+                            <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+                                <p th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
+                            </div>
+                        </form>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+
+                            <form action="#" th:action="@{/categories/edit/{id}(id=${category.id})}" method="post">
+                                <button class="btn btn-success" type="submit" onclick="">Conferma</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </footer>

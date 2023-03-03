@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+
+    <th:block th:replace="~{fragments/head :: personal-head(|Modifica ${category.name}|)}" />
+
+</head>
+
+<body class="bg-dark text-white">
+
+    <!-- Titolo pagina -->
+    <header class="py-3">
+        <h1 class="text-center">Modifica [[${category.name}]]</h1>
+    </header>
+
+    <form class="container d-flex flex-column align-items-center gap-2 py-3" id="categoryForm" th:object="${category}"
+        th:action="@{/categories/edit/{id}(id=${category.id})}" method="post">
+
+        <!-- Nome categoria -->
+        <div class="col-4">
+            <label class="form-label" for="categoryName">Nome categoria</label>
+            <input class="form-control" type="text" th:field="*{name}" id="categoryName" th:errorClass="is-invalid">
+            <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+                <p th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
+            </div>
+        </div>
+
+        <!-- Button navigation -->
+        <div class="col-12 d-flex gap-2 py-3">
+
+            <a th:href="@{/categories}" class="btn btn-primary">Torna all'elenco</a>
+
+            <a th:href="@{/categories/{id}(id=${category.id})}" class="btn btn-light">Torna alla categoria</a>
+
+            <input class="btn btn-success ms-auto" type="submit" value="Aggiorna categoria">
+
+        </div>
+
+    </form>
+
+</body>
+
+</html>

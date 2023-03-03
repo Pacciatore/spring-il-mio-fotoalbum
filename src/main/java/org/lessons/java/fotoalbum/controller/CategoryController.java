@@ -39,6 +39,26 @@ public class CategoryController {
 		return "categories/show";
 	}
 
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable("id") long id, Model model) {
+		model.addAttribute("category", categoryRepo.getReferenceById(id));
+
+		return "categories/edit";
+	}
+
+	@PostMapping("/edit/{id}")
+	public String update(@Valid @ModelAttribute("category") Category formCategory, BindingResult bindingResult,
+			Model model) {
+
+		if (bindingResult.hasErrors()) {
+			return "categories/edit";
+		}
+
+		categoryRepo.save(formCategory);
+
+		return "redirect:/categories/" + formCategory.getId();
+	}
+
 	@GetMapping("/create")
 	public String create(Model model) {
 		Category category = new Category();
