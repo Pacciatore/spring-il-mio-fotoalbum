@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+
+    <th:block th:replace="~{fragments/head :: personal-head(${tag.name})}" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body class="bg-dark text-white">
+
+    <!-- Titolo pagina -->
+    <header class="py-3">
+        <h1 class="text-center">[[${tag.name}]]</h1>
+    </header>
+
+    <!-- Contenuto principale della pagina -->
+    <main>
+
+        <div class="container">
+
+            <div class="list-group">
+
+                <!-- Se non ci sono Photo con questa Category -->
+                <h3 th:if="${tag.photos.isEmpty()}" class="text-danger text-center">
+                    Non sono presenti foto con questa categoria!
+                </h3>
+
+                <!-- Se ci sono Photo con questa Category -->
+                <a th:unless="${tag.photos.isEmpty()}" th:href="@{/photos/{id}(id=${photo.id})}"
+                    class="list-group-item list-group-item-action d-flex justify-content-between"
+                    th:each="photo : ${tag.photos}">
+                    <span class="text-primary">[[${photo.title}]]</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer per Button Navigation -->
+    <footer class="container d-flex justify-content-between gap-2 py-3">
+
+        <!-- Button trigger modal for Delete -->
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            Elimina
+        </button>
+
+        <!-- Modal per il Delete -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content text-black">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteModalLabel">Sei sicuro di voler eliminare questo tag?
+                        </h1>
+                    </div>
+
+                    <div class="modal-body">
+                        Questa operazione non è reversibile!<br>Clicca "Conferma" per eliminare.
+                        <br><span class="fw-bold">Nota: Verrò eliminato SOLO il tag, le foto associate saranno
+                            preservate.</span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+
+                        <form action="#" th:action="@{/tags/delete/{id}(id=${tag.id})}" method="post">
+                            <button class="btn btn-danger" type="submit" onclick="">Conferma</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-row-reverse gap-2">
+            <a th:href="@{/tags}" class="btn btn-primary">Torna all'elenco</a>
+
+            <!-- Button trigger modal for Edit -->
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal">
+                Modifica nome
+            </button>
+
+            <!-- Modal per l'Edit -->
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content text-black">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="editModalLabel">
+                                Nome:
+                            </h1>
+                        </div>
+
+                        <!-- Form in modal per Edit -->
+                        <form class="modal-body" id="tagForm" th:object="${tag}"
+                            th:action="@{/tags/edit/{id}(id=${tag.id})}" method="post">
+                            <!-- Nome categoria -->
+                            <input class="form-control" type="text" th:field="*{name}" id="tagName"
+                                th:errorClass="is-invalid">
+                            <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+                                <p th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
+                            </div>
+                        </form>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+
+                            <form action="#" th:action="@{/tags/edit/{id}(id=${tag.id})}" method="post">
+                                <button class="btn btn-success" type="submit" onclick="">Conferma</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
