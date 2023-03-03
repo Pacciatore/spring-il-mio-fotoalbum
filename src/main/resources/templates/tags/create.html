@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+
+    <th:block th:replace="~{fragments/head :: personal-head('Aggiungi un tag')}" />
+
+</head>
+
+<body class="bg-dark text-white">
+
+    <!-- Titolo pagina -->
+    <header class="py-3">
+        <h1 class="text-center">Aggiungi un tag</h1>
+    </header>
+
+    <form class="container d-flex flex-column align-items-center gap-2 py-3" id="tagForm" th:object="${tag}"
+        th:action="@{/tags/create}" method="post">
+
+        <!-- Nome tag -->
+        <div class="col-4">
+            <label class="form-label" for="tagName">Nome tag</label>
+            <input class="form-control" type="text" th:field="*{name}" id="tagName" th:errorClass="is-invalid">
+            <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+                <p th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
+            </div>
+        </div>
+
+        <!-- Button navigation -->
+        <div class="col-12 d-flex gap-2 py-3">
+
+            <a th:href="@{/tags}" class="btn btn-primary">Torna all'elenco</a>
+
+            <input class="btn btn-success ms-auto" type="submit" value="Aggiungi tag">
+
+        </div>
+
+    </form>
+
+</body>
+
+</html>

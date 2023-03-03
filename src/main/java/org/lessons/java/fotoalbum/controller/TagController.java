@@ -58,4 +58,23 @@ public class TagController {
 		return "redirect:/tags/" + formTag.getId();
 	}
 
+	@GetMapping("/create")
+	public String create(Model model) {
+		Tag tag = new Tag();
+		model.addAttribute("tag", tag);
+
+		return "tags/create";
+	}
+
+	@PostMapping("/create")
+	public String store(@Valid @ModelAttribute("tag") Tag formTag, BindingResult bindingResult, Model model) {
+
+		if (bindingResult.hasErrors()) {
+			return "tags/create";
+		}
+		tagRepo.save(formTag);
+
+		return "redirect:/tags";
+	}
+
 }
