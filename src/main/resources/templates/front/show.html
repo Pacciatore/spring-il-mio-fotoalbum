@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+
+    <th:block th:replace="~{fragments/head :: personal-head('FotoPost')}" />
+
+    <!-- Link Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Link a js/homepage.js -->
+    <script type="text/javascript" th:src="@{/js/showPhoto.js}" defer></script>
+
+</head>
+
+<body class="bg-dark text-white">
+
+    <!-- Navbar -->
+    <nav th:replace="~{fragments/navbar :: front-navbar('photos')}"></nav>
+
+    <!-- Titolo pagina -->
+    <header class="py-3">
+        <h1 id="photoTitle" class="text-center"></h1>
+    </header>
+
+    <!-- Contenuto principale -->
+    <main>
+
+        <div class="container">
+
+            <div id="photoDetails" class="d-flex flex-column flex-wrap">
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer Button Navigation -->
+    <footer class="container d-flex flex-row-reverse gap-2 py-3">
+        <a href="/" class="btn btn-primary">Torna alla homepage</a>
+    </footer>
+
+</body>
+
+</html>
