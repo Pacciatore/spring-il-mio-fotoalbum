@@ -26,7 +26,7 @@ public class Photo {
 
 	@NotNull
 	@NotEmpty(message = "Il titolo è obbligatorio!")
-	@Length(min = 3, message = "Il titolo deve essere di almeno 3 caratteri!")
+	@Length(min = 3, max = 30, message = "Il titolo deve essere compreso tra 3 e 30 caratteri!")
 	private String title;
 
 	@Length(max = 200, message = "La descrizione deve essere massimo di 200 caratteri!")
