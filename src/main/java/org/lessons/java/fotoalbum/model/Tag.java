@@ -1,12 +1,17 @@
 package org.lessons.java.fotoalbum.model;
 
+import java.util.List;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -22,16 +27,16 @@ public class Tag {
 	private String name;
 
 	@JsonBackReference
-	@NotNull
-	@ManyToOne
-	private Photo photo;
+	@ManyToMany(mappedBy = "tags")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private List<Photo> photos;
 
-	public Photo getPhoto() {
-		return photo;
+	public List<Photo> getPhotos() {
+		return photos;
 	}
 
-	public void setPhoto(Photo photo) {
-		this.photo = photo;
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
 	}
 
 	public long getId() {

@@ -40,7 +40,7 @@ public class Photo {
 	@NotNull
 	private boolean visible;
 
-	@OneToMany(mappedBy = "photo", cascade = CascadeType.REMOVE)
+	@ManyToMany()
 	private List<Tag> tags;
 
 	@OneToMany(mappedBy = "photo", cascade = CascadeType.REMOVE)
