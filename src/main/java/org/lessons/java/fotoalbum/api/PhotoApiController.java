@@ -79,4 +79,16 @@ public class PhotoApiController {
 
 		return comments;
 	}
+
+	@PostMapping("{id}/comments")
+	public ResponseEntity<Comment> createComment(@PathVariable(name = "id") long id, @RequestBody Comment comment) {
+		Optional<Photo> result = photoRepo.findById(id);
+
+		if (result.isPresent()) {
+			comment.setPhoto(result.get());
+			commentRepo.save(comment);
+			return new ResponseEntity<Comment>(comment, HttpStatus.OK);
+		} else
+			return new ResponseEntity<Comment>(HttpStatus.NOT_FOUND);
+	}
 }
