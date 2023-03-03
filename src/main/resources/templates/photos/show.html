@@ -30,22 +30,31 @@
                 <img class="img-thumbnail m-auto" th:src="${photo.url}" th:alt="|foto_${photo.id}|">
 
                 <!-- Descrizione della foto -->
-                <p th:unless="${photo.description.isEmpty()}">[[${photo.description}]]</p>
+                <p class="py-3 fs-3" th:unless="${photo.description.isEmpty()}">[[${photo.description}]]</p>
 
                 <!-- Se tag non è vuoto -->
-                <ul th:unless="${photo.tags.isEmpty()}">
-                    <li th:each="tag : ${photo.tags}">[[${tag.name}]]</li>
-                </ul>
+                <div class="tags" th:unless="${photo.tags.isEmpty()}">
+                    <h4>Tag:</h4>
+                    <ul class="list-unstyled d-flex flex-wrap gap-1 text-warning">
+                        <li th:each="tag : ${photo.tags}">[[${tag.name}]]</li>
+                    </ul>
+                </div>
 
                 <!-- Se categorie non è vuoto -->
-                <ul th:unless="${photo.categories.isEmpty()}">
-                    <li th:each="category : ${photo.categories}">[[${category.name}]]</li>
-                </ul>
+                <div class="categories" th:unless="${photo.categories.isEmpty()}">
+                    <h4>Categorie:</h4>
+                    <ul class="list-unstyled d-flex flex-wrap gap-1 text-info">
+                        <li th:each="category : ${photo.categories}">[[${category.name}]]</li>
+                    </ul>
+                </div>
 
                 <!-- Se commenti non è vuoto -->
-                <ul th:unless="${photo.comments.isEmpty()}">
-                    <li th:each="comment : ${photo.comments}">Nome utente: [[${comment.content}]]</li>
-                </ul>
+                <div class="comments" th:unless="${photo.comments.isEmpty()}">
+                    <ul class="list-unstyled d-flex flex-column flex-wrap gap-1">
+                        <li th:each="comment : ${photo.comments}"><span class="fw-bold text-primary">Nome utente:</span>
+                            [[${comment.content}]]</li>
+                    </ul>
+                </div>
 
             </div>
 
