@@ -1,0 +1,24 @@
+<th:block th:fragment="navbar(activePage)">
+
+    <!-- As a link -->
+    <nav class="navbar bg-light">
+        <div class="container">
+
+            <a class="navbar-brand" href="/">FotoLibro</a>
+
+            <ul class="navbar-nav d-flex flex-row gap-2">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/photos}">Foto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/tags}">Tags</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/categories}">Categorie</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+</th:block>
