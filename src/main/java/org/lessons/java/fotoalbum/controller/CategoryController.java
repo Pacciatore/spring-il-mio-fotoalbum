@@ -79,4 +79,11 @@ public class CategoryController {
 		return "redirect:/categories";
 	}
 
+	@PostMapping("/delete/{id}")
+	public String delete(@PathVariable("id") long id) {
+		categoryRepo.deleteById(id);
+
+		return "redirect:/categories";
+	}
+
 }
