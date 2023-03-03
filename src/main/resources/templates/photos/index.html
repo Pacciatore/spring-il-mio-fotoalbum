@@ -24,6 +24,12 @@
     <main>
         <div class="container">
 
+            <!-- Barra di ricerca per titolo -->
+            <form action="" method="get" class="py-3">
+                <input class="form-control col-4" type="text" name="photo" id="photoQuery"
+                    placeholder="Inserire titolo della foto da ricercare...">
+            </form>
+
             <div class="d-flex flex-wrap gap-5 justify-content-center">
 
                 <div th:each="photo : ${photos}" class="card position-relative">
