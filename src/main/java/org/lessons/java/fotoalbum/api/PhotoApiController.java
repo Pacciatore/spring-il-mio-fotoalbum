@@ -29,10 +29,10 @@ public class PhotoApiController {
 
 	@GetMapping
 	public List<Photo> index(@RequestParam(name = "photo", required = false) String keyword) {
-//		if (keyword == null || keyword.isEmpty())
-		return photoRepo.findAll();
-//		else
-//			return photoRepo.findByNameLike("%" + keyword + "%");
+		if (keyword == null || keyword.isEmpty())
+			return photoRepo.findAll();
+		else
+			return photoRepo.findByTitleLike("%" + keyword + "%");
 	}
 
 	@GetMapping("{id}")
