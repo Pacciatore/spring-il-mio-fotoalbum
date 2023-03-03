@@ -43,8 +43,11 @@
                 <!-- Se categorie non è vuoto -->
                 <div class="categories" th:unless="${photo.categories.isEmpty()}">
                     <h4>Categorie:</h4>
-                    <ul class="list-unstyled d-flex flex-wrap gap-1 text-info">
-                        <li th:each="category : ${photo.categories}">[[${category.name}]]</li>
+                    <ul class="list-unstyled d-flex flex-wrap gap-1">
+                        <li th:each="category : ${photo.categories}">
+                            <a class="text-info text-decoration-none"
+                                th:href="@{/categories/{id}(id=${category.id})}">[[${category.name}]]</a>
+                        </li>
                     </ul>
                 </div>
 
