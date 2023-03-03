@@ -38,8 +38,11 @@
                 <!-- Se tag non è vuoto -->
                 <div class="tags" th:unless="${photo.tags.isEmpty()}">
                     <h4>Tag:</h4>
-                    <ul class="list-unstyled d-flex flex-wrap gap-1 text-warning">
-                        <li th:each="tag : ${photo.tags}">[[${tag.name}]]</li>
+                    <ul class="list-unstyled d-flex flex-wrap gap-1">
+                        <li th:each="tag : ${photo.tags}">
+                            <a class="text-warning text-decoration-none"
+                                th:href="@{/tags/{id}(id=${tag.id})}">[[${tag.name}]]</a>
+                        </li>
                     </ul>
                 </div>
 
