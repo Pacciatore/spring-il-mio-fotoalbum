@@ -5,6 +5,14 @@
 
     <th:block th:replace="~{fragments/head :: personal-head('FotoLibro')}" />
 
+    <!-- Link per Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+
     <!-- Link Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
@@ -30,13 +38,32 @@
     <main>
         <div class="container">
 
-            <!-- Barra di ricerca per titolo -->
-            <form class="py-3">
-                <input class="form-control col-4" type="text" name="photo" id="photoQuery"
-                    placeholder="Inserire titolo della foto da ricercare...">
-            </form>
+            <div class="filters d-flex flex-wrap justify-content-center">
+                <!-- Barra di ricerca per titolo -->
+                <div th:replace="~{fragments/filter :: searchBar}"></div>
 
-            <div id="photosContainer" class="d-flex flex-wrap gap-5 justify-content-center">
+
+                <p class="my-auto">
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                        aria-expanded="false" aria-controls="collapseExample">Filtri</a>
+                </p>
+
+
+                <div class="collapse text-black col-12" id="collapseExample">
+                    <div class="card card-body gap-2">
+
+                        <!-- Filtri per Tags -->
+                        <div th:replace="~{fragments/filter :: checkboxFilter('tags')}"></div>
+
+                        <!-- Filtri per Categories -->
+                        <div th:replace="~{fragments/filter :: checkboxFilter('categories')}"></div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="photosContainer" class="d-flex flex-wrap py-3 gap-5 justify-content-center">
 
             </div>
 
