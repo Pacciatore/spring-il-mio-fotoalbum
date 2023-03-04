@@ -183,12 +183,25 @@ function filtersList() {
             console.log("tags", tags);
 
             tags.forEach(tag => {
-                document.getElementById('tagsCheckbox').innerHTML += `
-            
-            <input type="checkbox" value="${tag.id}" class="btn-check" id="tag_${tag.id}" autocomplete="off">
-            <label class="btn btn-outline-warning" for="tag_${tag.id}">${tag.name}</label>
 
-            `;
+                document.getElementById('tagsCheckbox').innerHTML += `
+                    <input type="checkbox" value="${tag.id}" class="btn-check tag" id="tag_${tag.id}" autocomplete="off">
+                    <label class="btn btn-outline-warning" for="tag_${tag.id}">${tag.name}</label>
+                `;
+
+                const tagCheckbox = document.querySelectorAll(`.btn-check.tag`);
+
+                tagCheckbox.forEach(tag => {
+
+                    tag.addEventListener('change', (event) => {
+                        if (event.target.checked) {
+                            console.log('checkbox selezionata', event.target.id)
+                        } else {
+                            console.log('checkbox deselezionata', event.target.id)
+                        }
+                    })
+                })
+
             })
 
         }).catch((result) => {
@@ -204,10 +217,24 @@ function filtersList() {
             categories.forEach(category => {
                 document.getElementById('categoriesCheckbox').innerHTML += `
             
-            <input type="checkbox" value="${category.id}" class="btn-check" id="category_${category.id}" autocomplete="off">
+            <input type="checkbox" value="${category.id}" class="btn-check category" id="category_${category.id}" autocomplete="off">
             <label class="btn btn-outline-info" for="category_${category.id}">${category.name}</label>
 
             `;
+
+                const categoryCheckbox = document.querySelectorAll(`.btn-check.category`);
+
+                categoryCheckbox.forEach(category => {
+
+                    category.addEventListener('change', (event) => {
+                        if (event.target.checked) {
+                            console.log('checkbox selezionata', event.target.id)
+                        } else {
+                            console.log('checkbox deselezionata', event.target.id)
+                        }
+                    })
+                })
+
             })
 
         }).catch((result) => {
