@@ -1,6 +1,7 @@
 console.log('JS OK!');
 
 photosList();
+filtersList();
 
 const searchBar = document.getElementById('photoQuery')
 
@@ -172,4 +173,46 @@ function photosListQuery(queryParam) {
             console.error("Errore nella richiesta", result);
             alert("Errore durante la richiesta!")
         })
+}
+
+function filtersList() {
+
+    axios.get('http://localhost:8080/api/tags')
+        .then((result) => {
+            const tags = result.data;
+            console.log("tags", tags);
+
+            tags.forEach(tag => {
+                document.getElementById('tagsCheckbox').innerHTML += `
+            
+            <input type="checkbox" value="${tag.id}" class="btn-check" id="tag_${tag.id}" autocomplete="off">
+            <label class="btn btn-outline-warning" for="tag_${tag.id}">${tag.name}</label>
+
+            `;
+            })
+
+        }).catch((result) => {
+            console.error("Errore nella richiesta", result);
+            alert("Errore durante la richiesta");
+        })
+
+    axios.get('http://localhost:8080/api/categories')
+        .then((result) => {
+            const categories = result.data;
+            console.log("categories", categories);
+
+            categories.forEach(category => {
+                document.getElementById('categoriesCheckbox').innerHTML += `
+            
+            <input type="checkbox" value="${category.id}" class="btn-check" id="category_${category.id}" autocomplete="off">
+            <label class="btn btn-outline-info" for="category_${category.id}">${category.name}</label>
+
+            `;
+            })
+
+        }).catch((result) => {
+            console.error("Errore nella richiesta", result);
+            alert("Errore durante la richiesta");
+        })
+
 }
