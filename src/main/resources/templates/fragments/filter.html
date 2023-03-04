@@ -1,0 +1,24 @@
+<th:block th:fragment="searchBar">
+
+    <form class="me-3 py-3 col-5">
+        <input class="form-control" type="text" name="photo" id="photoQuery"
+            placeholder="Inserire titolo della foto da ricercare...">
+    </form>
+
+</th:block>
+
+<th:block th:fragment="checkboxFilter(elementFilter)">
+
+    <div th:class="${elementFilter.contains('tags')} ? 'tagsFilter' : 'categoriesFilter' ">
+        <h5 th:text="${elementFilter.contains('tags')} ? 'Tag' : 'Categorie' ">Tag</h5>
+
+        <div th:class="${elementFilter.contains('tags')} ? 'tagsChecbox' : 'categoriesChecbox' ">
+
+            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+            <label class="btn btn-outline-info" for="btncheck1">Checkbox 1</label>
+
+        </div>
+
+    </div>
+
+</th:block>
