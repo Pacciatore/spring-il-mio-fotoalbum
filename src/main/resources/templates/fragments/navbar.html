@@ -38,7 +38,10 @@
                         th:href="@{/}">Foto</a>
                 </li>
                 <li class="nav-item">
-                    <a th:class="${activePage.contains('tags')} ? 'nav-link active' : 'nav-link'" href="#">Login</a>
+                    <a th:class="${activePage.contains('tags')} ? 'nav-link active' : 'nav-link'" th:href="@{/photos}"
+                        sec:authorize="hasAuthority('ADMIN')" sec:authentication="name">xxx</a>
+                    <a th:class="${activePage.contains('tags')} ? 'nav-link active' : 'nav-link'" th:href="@{/logout}"
+                        sec:authorize="hasAuthority('USER')" sec:authentication="name">xxx</a>
                 </li>
             </ul>
 
