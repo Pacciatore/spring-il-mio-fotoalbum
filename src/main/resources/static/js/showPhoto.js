@@ -60,9 +60,11 @@ function photoDetail() {
             });
 
             comments.forEach(comment => {
+                console.log('commento', comment)
+
                 document.querySelector('.comments-list').innerHTML += `
                     <li>
-                        <span class="fw-bold text-primary">Nome utente:</span> ${comment.content}
+                        <span class="fw-bold text-primary">${comment.username}:</span> ${comment.content}
                     </li>`;
             });
 
