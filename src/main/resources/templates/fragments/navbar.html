@@ -18,6 +18,12 @@
                     <a th:class="${activePage.contains('categories')} ? 'nav-link active' : 'nav-link'"
                         th:href="@{/categories}">Categorie</a>
                 </li>
+
+                <li>
+                    <a th:class="${activePage.contains('tags')} ? 'nav-link active' : 'nav-link'" th:href="@{/logout}"
+                        sec:authorize="hasAuthority('ADMIN')">Logout</a>
+                </li>
+
             </ul>
 
         </div>
@@ -38,10 +44,18 @@
                         th:href="@{/}">Foto</a>
                 </li>
                 <li class="nav-item">
+
+                    <!-- Logout utente -->
                     <a th:class="${activePage.contains('tags')} ? 'nav-link active' : 'nav-link'" th:href="@{/photos}"
                         sec:authorize="hasAuthority('ADMIN')" sec:authentication="name">xxx</a>
+
+                    <!-- Pagina Admin -->
                     <a th:class="${activePage.contains('tags')} ? 'nav-link active' : 'nav-link'" th:href="@{/logout}"
                         sec:authorize="hasAuthority('USER')" sec:authentication="name">xxx</a>
+
+                    <!-- Login -->
+                    <a th:class="${activePage.contains('tags')} ? 'nav-link active' : 'nav-link'" th:href="@{/login}"
+                        sec:authorize="!isAuthenticated()">Login</a>
                 </li>
             </ul>
 
