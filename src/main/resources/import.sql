@@ -1,9 +1,9 @@
 INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Titolo', 'https://picsum.photos/200', true);
-INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Titolo', 'https://picsum.photos/200', true);
-INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Titolo', 'https://picsum.photos/200', true);
-INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Titolo', 'https://picsum.photos/200', true);
-INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Titolo', 'https://picsum.photos/200', true);
-INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Titolo', 'https://picsum.photos/200', true);
+INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'La festa di Pedro', 'https://picsum.photos/200', true);
+INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Una cena', 'https://picsum.photos/200', true);
+INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Mistomare', 'https://picsum.photos/200', true);
+INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Bari', 'https://picsum.photos/200', true);
+INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Viaggio', 'https://picsum.photos/200', true);
 INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Titolo', 'https://picsum.photos/200', true);
 INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Titolo', 'https://picsum.photos/200', true);
 INSERT INTO spring_fotoalbum.photos(description, title, url, visible) VALUES('Una descrizione casuale', 'Titolo', 'https://picsum.photos/200', true);
@@ -26,7 +26,7 @@ INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Bella foto!', 5
 INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Bella foto!', 6);
 INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Bella foto!', 4);
 INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Bella foto!', 7);
-INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Bella foto!', 7);
+INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Quanto tempo!', 7);
 INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Non ti ricordavo così!', 7);
 
 INSERT INTO spring_fotoalbum.tags(name) VALUES('Amicizia');
@@ -34,3 +34,13 @@ INSERT INTO spring_fotoalbum.tags(name) VALUES('Divertimento');
 INSERT INTO spring_fotoalbum.tags(name) VALUES('Passione');
 INSERT INTO spring_fotoalbum.tags(name) VALUES('Tristezza');
 INSERT INTO spring_fotoalbum.tags(name) VALUES('Rabbia');
+
+INSERT INTO spring_fotoalbum.photos_tags(photos_id, tags_id) VALUES(1,1);
+INSERT INTO spring_fotoalbum.photos_tags(photos_id, tags_id) VALUES(1,2);
+INSERT INTO spring_fotoalbum.photos_tags(photos_id, tags_id) VALUES(3,4);
+INSERT INTO spring_fotoalbum.photos_tags(photos_id, tags_id) VALUES(8,3);
+INSERT INTO spring_fotoalbum.photos_tags(photos_id, tags_id) VALUES(8,5);
+INSERT INTO spring_fotoalbum.photos_tags(photos_id, tags_id) VALUES(4,1);
+INSERT INTO spring_fotoalbum.photos_tags(photos_id, tags_id) VALUES(2,1);
+INSERT INTO spring_fotoalbum.photos_tags(photos_id, tags_id) VALUES(2,2);
+INSERT INTO spring_fotoalbum.photos_tags(photos_id, tags_id) VALUES(7,1);
