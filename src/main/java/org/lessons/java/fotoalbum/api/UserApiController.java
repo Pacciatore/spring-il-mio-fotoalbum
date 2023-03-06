@@ -33,7 +33,7 @@ public class UserApiController {
 
 			cleanedUser.setId(user.getId());
 			cleanedUser.setUsername(user.getUsername());
-			cleanedUser.setComments(user.getComments());
+//			cleanedUser.setComments(user.getComments());
 			cleanedUser.setRoles(user.getRoles());
 			cleanedUser.setPassword("private");
 
@@ -55,7 +55,7 @@ public class UserApiController {
 			cleanedUser.setId(result.get().getId());
 			cleanedUser.setUsername(result.get().getUsername());
 			cleanedUser.setRoles(result.get().getRoles());
-			cleanedUser.setComments(result.get().getComments());
+//			cleanedUser.setComments(result.get().getComments());
 			cleanedUser.setPassword("private");
 
 			return new ResponseEntity<User>(cleanedUser, HttpStatus.OK);

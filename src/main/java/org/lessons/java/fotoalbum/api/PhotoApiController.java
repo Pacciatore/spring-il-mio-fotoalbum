@@ -1,14 +1,13 @@
 package org.lessons.java.fotoalbum.api;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.lessons.java.fotoalbum.model.Comment;
 import org.lessons.java.fotoalbum.model.Photo;
-import org.lessons.java.fotoalbum.model.User;
 import org.lessons.java.fotoalbum.repository.CommentRepository;
 import org.lessons.java.fotoalbum.repository.PhotoRepository;
+import org.lessons.java.fotoalbum.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +32,9 @@ public class PhotoApiController {
 
 	@Autowired
 	private CommentRepository commentRepo;
+
+	@Autowired
+	private UserRepository userRepo;
 
 	@GetMapping
 	public List<Photo> index(@RequestParam(name = "photo", required = false) String keyword) {
@@ -82,32 +84,39 @@ public class PhotoApiController {
 		return comments;
 	}
 
-//	Ottengo gli users di tutti i commenti
-	@GetMapping("{id}/comments/users")
-	public List<User> showCommentsUsers(@PathVariable(name = "id") long id) {
-		List<Comment> comments = photoRepo.getReferenceById(id).getComments();
-		List<User> users = new ArrayList<>();
-
-		for (Comment comment : comments) {
-			User cleanedUser = new User();
-
-			cleanedUser.setId(comment.getUser().getId());
-			cleanedUser.setUsername(comment.getUser().getUsername());
-			cleanedUser.setRoles(comment.getUser().getRoles());
-			cleanedUser.setComments(comment.getUser().getComments());
-			cleanedUser.setPassword("private");
-
-			users.add(cleanedUser);
-		}
-
-		return users;
-	}
+////	Ottengo gli users di tutti i commenti
+//	@GetMapping("{id}/comments/users")
+//	public List<User> showCommentsUsers(@PathVariable(name = "id") long id) {
+//		List<Comment> comments = photoRepo.getReferenceById(id).getComments();
+//		List<User> users = new ArrayList<>();
+//
+//		for (Comment comment : comments) {
+//			User cleanedUser = new User();
+//
+//			cleanedUser.setId(comment.getUser().getId());
+//			cleanedUser.setUsername(comment.getUser().getUsername());
+//			cleanedUser.setRoles(comment.getUser().getRoles());
+//			cleanedUser.setComments(comment.getUser().getComments());
+//			cleanedUser.setPassword("private");
+//
+//			users.add(cleanedUser);
+//		}
+//
+//		return users;
+//	}
 
 	@PostMapping("{id}/comments")
-	public ResponseEntity<Comment> createComment(@PathVariable(name = "id") long id, @RequestBody Comment comment) {
+	public ResponseEntity<Comment> createComment(@PathVariable(name = "id") long id,
+//			Authentication auth,
+			@RequestBody Comment comment) {
 		Optional<Photo> result = photoRepo.findById(id);
 
+//		String userToFind = auth.getName();
+//
+//		Optional<User> user = userRepo.findByUsername(userToFind);
+
 		if (result.isPresent()) {
+//			comment.setUser(user.get());
 			comment.setPhoto(result.get());
 			commentRepo.save(comment);
 			return new ResponseEntity<Comment>(comment, HttpStatus.OK);

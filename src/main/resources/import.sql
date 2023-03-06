@@ -36,14 +36,14 @@ INSERT INTO spring_fotoalbum.user(id, username, password) VALUES(2, 'Pedro', '{b
 INSERT INTO spring_fotoalbum.user_roles(user_id, roles_id) VALUES(1, 1);
 INSERT INTO spring_fotoalbum.user_roles(user_id, roles_id) VALUES(2, 2);
 
-INSERT INTO spring_fotoalbum.comments(content, photo_id, user_id) VALUES('Bella foto!', 1, 1);
-INSERT INTO spring_fotoalbum.comments(content, photo_id, user_id) VALUES('Mi ricordo di questo giorno', 1, 2);
-INSERT INTO spring_fotoalbum.comments(content, photo_id, user_id) VALUES('Bella foto!', 5, 2);
-INSERT INTO spring_fotoalbum.comments(content, photo_id, user_id) VALUES('Bella foto!', 6, 1);
-INSERT INTO spring_fotoalbum.comments(content, photo_id, user_id) VALUES('Bella foto!', 4, 1);
-INSERT INTO spring_fotoalbum.comments(content, photo_id, user_id) VALUES('Bella foto!', 7, 2);
-INSERT INTO spring_fotoalbum.comments(content, photo_id, user_id) VALUES('Quanto tempo!', 7, 2);
-INSERT INTO spring_fotoalbum.comments(content, photo_id, user_id) VALUES('Non ti ricordavo così!', 7, 1);
+INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Bella foto!', 1);
+INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Mi ricordo di questo giorno', 1);
+INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Bella foto!', 5);
+INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Bella foto!', 6);
+INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Bella foto!', 4);
+INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Bella foto!', 7);
+INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Quanto tempo!', 7);
+INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Non ti ricordavo così!', 7);
 
 INSERT INTO spring_fotoalbum.tags(name) VALUES('Amicizia');
 INSERT INTO spring_fotoalbum.tags(name) VALUES('Divertimento');

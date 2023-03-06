@@ -3,20 +3,31 @@ console.log('DETTAGLIO JS OK!')
 const URLParams = new URLSearchParams(window.location.search);
 const photoId = URLParams.get('id');
 
-let usersList;
+// let usersList;
 
-const usersPromise = new Promise((resolve, reject) => {
-    resolve(userList());
-})
+// const usersPromise = new Promise((resolve, reject) => {
+//     resolve(userList());
+// })
 
-usersPromise.then(photoDetail());
+const commentTextArea = document.getElementById('commentAdd');
+
+const commentBtn = document.getElementById('commentBtn');
+console.log(commentBtn)
+
+commentBtn.addEventListener("click", function (event) {
+    createComment(event);
+});
+
+// usersPromise.then(photoDetail());
+
+photoDetail();
 
 function photoDetail() {
 
     axios.get(`http://localhost:8080/api/photos/${photoId}`)
         .then((result) => {
 
-            console.log('lista utenti', usersList)
+            // console.log('lista utenti', usersList)
 
             const photo = result.data;
             console.log("Photo", photo);
@@ -73,20 +84,20 @@ function photoDetail() {
                         <span id="comment_${comment.id}" class="username fw-bold text-primary">Nome utente:</span> ${comment.content}
                     </li>`;
 
-                // Itero i commenti di ogni utente per poter assegnare lo username corretto ai commenti
-                usersList.forEach(user => {
-                    // console.log('utente per username', user)
+                // // Itero i commenti di ogni utente per poter assegnare lo username corretto ai commenti
+                // usersList.forEach(user => {
+                //     // console.log('utente per username', user)
 
-                    user.comments.forEach(userComment => {
-                        // console.log('id dei commenti dell utente', userComment.id)
-                        if (userComment.id == comment.id) {
-                            console.log('id del commento', comment.id)
-                            document.querySelector(`#comment_${comment.id}`).innerHTML = `${user.username}`;
-                        }
-                    });
+                //     user.comments.forEach(userComment => {
+                //         // console.log('id dei commenti dell utente', userComment.id)
+                //         if (userComment.id == comment.id) {
+                //             console.log('id del commento', comment.id)
+                //             document.querySelector(`#comment_${comment.id}`).innerHTML = `${user.username}`;
+                //         }
+                //     });
 
 
-                })
+                // })
 
             });
 
@@ -98,15 +109,38 @@ function photoDetail() {
 
 }
 
-function userList() {
+// function userList() {
 
-    axios.get(`http://localhost:8080/api/photos/${photoId}/comments/users`)
+//     axios.get(`http://localhost:8080/api/photos/${photoId}/comments/users`)
+//         .then((result) => {
+//             console.log(result.data);
+//             usersList = result.data;
+//         }).catch((result) => {
+//             console.error('Errore nella richiesta', result);
+//             alert('Errore durante la richiesta')
+//         })
+
+// }
+
+function createComment(event) {
+
+    console.log('cliccato', event);
+
+    event.preventDefault();
+
+    const comment = {
+        content: commentTextArea.value
+    }
+
+    console.log("Commento: ", comment);
+
+    axios.post(`http://localhost:8080/api/photos/${photoId}/comments`, comment)
         .then((result) => {
-            console.log(result.data);
-            usersList = result.data;
+            console.log("Inserimento dati di", comment)
+            window.location.replace(`/photo?id=${photoId}`);
         }).catch((result) => {
-            console.error('Errore nella richiesta', result);
-            alert('Errore durante la richiesta')
+            console.error("Errore nella richiesta", result);
+            alert("Errore durante la richiesta")
         })
 
 }
