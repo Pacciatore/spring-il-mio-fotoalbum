@@ -20,6 +20,22 @@ INSERT INTO spring_fotoalbum.categories(name) VALUES('Sport');
 INSERT INTO spring_fotoalbum.categories(name) VALUES('Cucina');
 INSERT INTO spring_fotoalbum.categories(name) VALUES('Informatica');
 
+INSERT INTO spring_fotoalbum.photos_categories(photos_id, categories_id) VALUES(1, 5);
+INSERT INTO spring_fotoalbum.photos_categories(photos_id, categories_id) VALUES(7, 5);
+INSERT INTO spring_fotoalbum.photos_categories(photos_id, categories_id) VALUES(7, 2);
+INSERT INTO spring_fotoalbum.photos_categories(photos_id, categories_id) VALUES(4, 1);
+INSERT INTO spring_fotoalbum.photos_categories(photos_id, categories_id) VALUES(9, 8);
+
+INSERT INTO spring_fotoalbum.role(id, name) VALUES(1, 'USER');
+INSERT INTO spring_fotoalbum.role(id, name) VALUES(2, 'ADMIN');
+
+INSERT INTO spring_fotoalbum.user(id, username, password) VALUES(1, 'Francesco', '{bcrypt}$2a$10$W8Zy76910kNtRRRDSKdg.e4OLzt8m.7LAWdMt7Mvhi4B/1QLryokm');
+INSERT INTO spring_fotoalbum.user(id, username, password) VALUES(2, 'Pedro', '{bcrypt}$2a$10$W8Zy76910kNtRRRDSKdg.e4OLzt8m.7LAWdMt7Mvhi4B/1QLryokm');
+
+
+INSERT INTO spring_fotoalbum.user_roles(user_id, roles_id) VALUES(1, 1);
+INSERT INTO spring_fotoalbum.user_roles(user_id, roles_id) VALUES(2, 2);
+
 INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Bella foto!', 1);
 INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Mi ricordo di questo giorno', 1);
 INSERT INTO spring_fotoalbum.comments(content, photo_id) VALUES('Bella foto!', 5);
