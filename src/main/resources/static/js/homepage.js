@@ -361,17 +361,17 @@ function filtersList() {
                     tag.addEventListener('change', (event) => {
                         if (event.target.checked) {
 
-                            console.log('checkbox selezionata', event.target.id);
+                            // console.log('checkbox selezionata', event.target.id);
 
                             const tagId = event.target.value;
                             const tagName = event.target.nextElementSibling.innerHTML;
 
                             const tagElement = { id: tagId, name: tagName };
-                            console.log('Filtro per tag', tagElement);
+                            // console.log('Filtro per tag', tagElement);
 
                             photosListQuery(tagElement, 'tags');
                         } else {
-                            console.log('checkbox deselezionata', event.target.id);
+                            // console.log('checkbox deselezionata', event.target.id);
                             photosList();
                         }
                     })
@@ -403,17 +403,17 @@ function filtersList() {
 
                     category.addEventListener('change', (event) => {
                         if (event.target.checked) {
-                            console.log('checkbox selezionata', event.target.id)
+                            // console.log('checkbox selezionata', event.target.id)
 
                             const categoryId = event.target.value;
                             const categoryName = event.target.nextElementSibling.innerHTML;
 
                             const categoryElement = { id: categoryId, name: categoryName };
-                            console.log('Filtro per tag', categoryElement);
+                            // console.log('Filtro per tag', categoryElement);
 
                             photosListQuery(categoryElement, 'categories');
                         } else {
-                            console.log('checkbox deselezionata', event.target.id);
+                            // console.log('checkbox deselezionata', event.target.id);
                             photosList();
                         }
                     })
