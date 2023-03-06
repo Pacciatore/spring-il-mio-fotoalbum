@@ -15,11 +15,15 @@ public class SecurityConfiguration {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests().requestMatchers("/photos", "/photos/**").hasAuthority("ADMIN")
+				.requestMatchers(HttpMethod.POST, "/api/**").hasAuthority("ADMIN")
+				.requestMatchers(HttpMethod.DELETE, "/api/**").hasAuthority("ADMIN")
+				.requestMatchers(HttpMethod.PUT, "/api/**").hasAuthority("ADMIN")
+				.requestMatchers(HttpMethod.POST, "/api/photos/{id}/comments").hasAnyAuthority("USER", "ADMIN")
 				.requestMatchers(HttpMethod.POST, "/photos/**").hasAuthority("ADMIN")
 				.requestMatchers("/tags", "/tags/**").hasAuthority("ADMIN")
 				.requestMatchers("/categories", "/categories/**").hasAuthority("ADMIN").requestMatchers("/**")
 				.permitAll().and().formLogin().and().logout().and().exceptionHandling()
-				.accessDeniedPage("/access-denied.html");
+				.accessDeniedPage("/access-denied.html").and().csrf().disable();
 
 		return http.build();
 	}
