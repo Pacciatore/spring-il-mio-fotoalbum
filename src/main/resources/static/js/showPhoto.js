@@ -3,12 +3,20 @@ console.log('DETTAGLIO JS OK!')
 const URLParams = new URLSearchParams(window.location.search);
 const photoId = URLParams.get('id');
 
-photoDetail();
+let usersList;
+
+const usersPromise = new Promise((resolve, reject) => {
+    resolve(userList());
+})
+
+usersPromise.then(photoDetail());
 
 function photoDetail() {
 
     axios.get(`http://localhost:8080/api/photos/${photoId}`)
         .then((result) => {
+
+            console.log('lista utenti', usersList)
 
             const photo = result.data;
             console.log("Photo", photo);
@@ -60,17 +68,45 @@ function photoDetail() {
             });
 
             comments.forEach(comment => {
-                console.log('commento', comment)
-
                 document.querySelector('.comments-list').innerHTML += `
                     <li>
-                        <span class="fw-bold text-primary">${comment.username}:</span> ${comment.content}
+                        <span id="comment_${comment.id}" class="username fw-bold text-primary">Nome utente:</span> ${comment.content}
                     </li>`;
+
+                // Itero i commenti di ogni utente per poter assegnare lo username corretto ai commenti
+                usersList.forEach(user => {
+                    // console.log('utente per username', user)
+
+                    user.comments.forEach(userComment => {
+                        // console.log('id dei commenti dell utente', userComment.id)
+                        if (userComment.id == comment.id) {
+                            console.log('id del commento', comment.id)
+                            document.querySelector(`#comment_${comment.id}`).innerHTML = `${user.username}`;
+                        }
+                    });
+
+
+                })
+
             });
+
 
         }).catch((result) => {
             console.error("Errore nella richiesta", result);
             alert("Errore durante la richiesta")
+        })
+
+}
+
+function userList() {
+
+    axios.get(`http://localhost:8080/api/photos/${photoId}/comments/users`)
+        .then((result) => {
+            console.log(result.data);
+            usersList = result.data;
+        }).catch((result) => {
+            console.error('Errore nella richiesta', result);
+            alert('Errore durante la richiesta')
         })
 
 }
