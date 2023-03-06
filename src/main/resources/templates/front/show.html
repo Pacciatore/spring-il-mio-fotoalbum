@@ -32,19 +32,16 @@
 
             </div>
 
-            <!-- Se autenticato -->
-            <div sec:authorize="isAuthenticated()" class="form-floating text-black col-4">
-                <textarea class="form-control" name="addComment" placeholder="Aggiungi un commento"
-                    id="commentAdd"></textarea>
-                <label for="commentAdd">Aggiungi un commento</label>
-                <a id="commentBtn" href="#">Aggiungi commento</a>
-            </div>
-
-            <!-- Se non autenticato -->
-            <div sec:authorize="!isAuthenticated()" class="form-floating text-black col-4">
-                <textarea class="form-control" name="addComment" placeholder="Aggiungi un commento" id="commentAdd"
-                    disabled></textarea>
-                <label for="commentAdd">Registrati per aggiungere un commento!</label>
+            <!-- Aggiungi commento SEMPRE -->
+            <div class="d-flex gap-2">
+                <div class="form-floating text-black col-4">
+                    <textarea class="form-control" name="addComment" placeholder="Aggiungi un commento"
+                        id="commentAdd"></textarea>
+                    <label for="commentAdd">Aggiungi un commento</label>
+                </div>
+                <div class="btn-container d-flex flex-column justify-content-center">
+                    <a id="commentBtn" class="btn btn-primary" href="#">Aggiungi commento</a>
+                </div>
             </div>
 
         </div>
