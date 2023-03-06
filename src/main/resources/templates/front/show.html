@@ -32,6 +32,18 @@
 
             </div>
 
+            <div sec:authorize="isAuthenticated()" class="form-floating text-black col-4">
+                <textarea class="form-control" name="addComment" placeholder="Aggiungi un commento"
+                    id="commentAdd"></textarea>
+                <label for="commentAdd">Aggiungi un commento</label>
+            </div>
+
+            <div sec:authorize="!isAuthenticated()" class="form-floating text-black col-4">
+                <textarea class="form-control" name="addComment" placeholder="Aggiungi un commento" id="commentAdd"
+                    disabled></textarea>
+                <label for="commentAdd">Registrati per aggiungere un commento!</label>
+            </div>
+
         </div>
 
     </main>
