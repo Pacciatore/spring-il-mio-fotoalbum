@@ -1,10 +1,12 @@
 package org.lessons.java.fotoalbum.api;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.lessons.java.fotoalbum.model.Comment;
 import org.lessons.java.fotoalbum.model.Photo;
+import org.lessons.java.fotoalbum.model.User;
 import org.lessons.java.fotoalbum.repository.CommentRepository;
 import org.lessons.java.fotoalbum.repository.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +80,27 @@ public class PhotoApiController {
 		List<Comment> comments = photoRepo.getReferenceById(id).getComments();
 
 		return comments;
+	}
+
+//	Ottengo gli users di tutti i commenti
+	@GetMapping("{id}/comments/users")
+	public List<User> showCommentsUsers(@PathVariable(name = "id") long id) {
+		List<Comment> comments = photoRepo.getReferenceById(id).getComments();
+		List<User> users = new ArrayList<>();
+
+		for (Comment comment : comments) {
+			User cleanedUser = new User();
+
+			cleanedUser.setId(comment.getUser().getId());
+			cleanedUser.setUsername(comment.getUser().getUsername());
+			cleanedUser.setRoles(comment.getUser().getRoles());
+			cleanedUser.setComments(comment.getUser().getComments());
+			cleanedUser.setPassword("private");
+
+			users.add(cleanedUser);
+		}
+
+		return users;
 	}
 
 	@PostMapping("{id}/comments")
