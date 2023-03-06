@@ -350,7 +350,7 @@ function filtersList() {
             tags.forEach(tag => {
 
                 document.getElementById('tagsCheckbox').innerHTML += `
-                    <input type="checkbox" value="${tag.id}" class="btn-check tag" id="tag_${tag.id}" autocomplete="off">
+                    <input type="radio" value="${tag.id}" class="btn-check tag" name="tag_radio" id="tag_${tag.id}" autocomplete="off">
                     <label class="btn btn-outline-warning" for="tag_${tag.id}">${tag.name}</label>
                 `;
 
@@ -359,7 +359,7 @@ function filtersList() {
                 tagCheckbox.forEach(tag => {
 
                     tag.addEventListener('change', (event) => {
-                        if (event.target.checked) {
+                        if (event.target.checked && event.target.value != '') {
 
                             // console.log('checkbox selezionata', event.target.id);
 
@@ -374,7 +374,7 @@ function filtersList() {
                             // console.log('checkbox deselezionata', event.target.id);
                             photosList();
                         }
-                    })
+                    });
                 })
 
             })
@@ -392,7 +392,7 @@ function filtersList() {
             categories.forEach(category => {
                 document.getElementById('categoriesCheckbox').innerHTML += `
             
-            <input type="checkbox" value="${category.id}" class="btn-check category" id="category_${category.id}" autocomplete="off">
+            <input type="radio" value="${category.id}" name="category_radio" class="btn-check category" id="category_${category.id}" autocomplete="off">
             <label class="btn btn-outline-info" for="category_${category.id}">${category.name}</label>
 
             `;

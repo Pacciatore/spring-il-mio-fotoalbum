@@ -16,6 +16,14 @@
 
         </div>
 
+        <div class="resetButton py-2">
+            <input type="radio" value="" class="btn-check tag"
+                th:name="${elementFilter.contains('tags')} ? 'tag_radio' : 'category_radio' "
+                th:id="${elementFilter.contains('tags')} ? 'tag_reset' : 'categories_reset' " autocomplete="off">
+            <label th:class="${elementFilter.contains('tags')} ? 'btn btn-outline-warning' : 'btn btn-outline-info'"
+                th:for="${elementFilter.contains('tags')} ? 'tag_reset' : 'categories_reset' ">Reset</label>
+        </div>
+
     </div>
 
 </th:block>
